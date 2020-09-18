@@ -11,7 +11,7 @@ const Login = () => {
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
   const [credentials, setCredentials] = useState(initialValue);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const history = useHistory();
 
   const handleChange = (e) => {
@@ -34,7 +34,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.error(err);
-        setError(err.response.data.error);
+        // setError(err.response.data.error);
       });
   };
 
