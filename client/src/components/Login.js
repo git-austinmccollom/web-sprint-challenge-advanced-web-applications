@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const initialValue = {
   username: "",
@@ -19,26 +20,27 @@ const Login = () => {
     })
   }
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   axiosWithAuth()
-  //     .post("http://localhost:5000/api/login", credentials)
-  //     .then((res) => {
-  //       console.log(res);
-  //       localStorage.setItem('token', res.data.payload);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post("http://localhost:5000/api/login", credentials)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data.payload);
+        localStorage.setItem('token', res.data.payload);
         
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //       setError(err.response.data.error);
-  //     });
-  // };
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err.response.data.error);
+      });
+  };
 
   return (
     <>
       <h1>Welcome to the Bubble App!</h1>
       <p>Build a login page here</p>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>Username 
           <input
             type='text'
@@ -55,6 +57,7 @@ const Login = () => {
             onChange={handleChange}
           />
         </label>
+        <button>submit</button>
       </form>
     </>
   );
