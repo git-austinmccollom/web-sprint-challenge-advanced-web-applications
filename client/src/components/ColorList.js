@@ -13,6 +13,7 @@ const ColorList = ({ colors, updateColors, getColors }) => {
   const editColor = color => {
     setEditing(true);
     setColorToEdit(color);
+    setColorToEdit(color);
     console.log(colorToEdit)
   };
 
@@ -31,7 +32,9 @@ const ColorList = ({ colors, updateColors, getColors }) => {
   };
 
   const deleteColor = color => {
-    // make a delete request to delete this color
+    axiosWithAuth()
+      .delete(`http://localhost:5000/api/colors/${color.id}`)
+      getColors();
   };
 
   return (
