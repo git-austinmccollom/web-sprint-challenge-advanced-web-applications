@@ -12,7 +12,10 @@ const BubblePage = () => {
   // set that data to the colorList state property
 
   useEffect( () => {
-    getColors();
+    getColors().then( res => {
+      setColorList(res);
+    })
+    // setColorList(getColors());
   }, [])
 
   return (
